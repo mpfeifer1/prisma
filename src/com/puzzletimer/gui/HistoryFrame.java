@@ -359,29 +359,14 @@ public class HistoryFrame extends JFrame {
         this.buttonExportSolutions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SolutionImporterDialog.SolutionImporterListener listener =
-                    new SolutionImporterDialog.SolutionImporterListener() {
+                SolutionExporterDialog.SolutionExporterListener listener =
+                    new SolutionExporterDialog.SolutionExporterListener() {
                         @Override
                         public void solutionsImported(Solution[] solutions) {
                             solutionManager.addSolutions(solutions);
                         }
                     };
 
-                Category currentCategory = categoryManager.getCurrentCategory();
-                Scrambler currentScrambler = scramblerProvider.get(currentCategory.getScramblerId());
-                String puzzleId = currentScrambler.getScramblerInfo().getPuzzleId();
-                ScrambleParser scrambleParser = scrambleParserProvider.get(puzzleId);
-
-                SolutionImporterDialog solutionEditingDialog =
-                    new SolutionImporterDialog(
-                        HistoryFrame.this,
-                        true,
-                        currentCategory.getCategoryId(),
-                        currentCategory.getScramblerId(),
-                        scrambleParser,
-                        listener);
-                solutionEditingDialog.setLocationRelativeTo(null);
-                solutionEditingDialog.setVisible(true);
             }
         });
 
