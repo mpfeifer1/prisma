@@ -215,6 +215,7 @@ public class HistoryFrame extends JFrame {
     private JLabel labelBestAverageOf12;
     private JTable table;
     private JButton buttonAddSolutions;
+    private JButton buttonExportSolutions;
     private JButton buttonEdit;
     private JButton buttonRemove;
     private JButton buttonSelectSession;
@@ -326,6 +327,36 @@ public class HistoryFrame extends JFrame {
 
         // add solutions button
         this.buttonAddSolutions.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SolutionImporterDialog.SolutionImporterListener listener =
+                    new SolutionImporterDialog.SolutionImporterListener() {
+                        @Override
+                        public void solutionsImported(Solution[] solutions) {
+                            solutionManager.addSolutions(solutions);
+                        }
+                    };
+
+                Category currentCategory = categoryManager.getCurrentCategory();
+                Scrambler currentScrambler = scramblerProvider.get(currentCategory.getScramblerId());
+                String puzzleId = currentScrambler.getScramblerInfo().getPuzzleId();
+                ScrambleParser scrambleParser = scrambleParserProvider.get(puzzleId);
+
+                SolutionImporterDialog solutionEditingDialog =
+                    new SolutionImporterDialog(
+                        HistoryFrame.this,
+                        true,
+                        currentCategory.getCategoryId(),
+                        currentCategory.getScramblerId(),
+                        scrambleParser,
+                        listener);
+                solutionEditingDialog.setLocationRelativeTo(null);
+                solutionEditingDialog.setVisible(true);
+            }
+        });
+        
+     // export solutions button
+        this.buttonExportSolutions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SolutionImporterDialog.SolutionImporterListener listener =
@@ -612,6 +643,10 @@ public class HistoryFrame extends JFrame {
         // buttonAddSolutions
         this.buttonAddSolutions = new JButton(_("history.add_solutions"));
         add(this.buttonAddSolutions, "growx, top, split 5, flowy");
+        
+        // buttonExportSolutions
+        this.buttonExportSolutions = new JButton(_("history.export_solutions"));
+        add(this.buttonExportSolutions, "growx, top, split 5, flowy");
 
         // buttonEdit
         this.buttonEdit = new JButton(_("history.edit"));
