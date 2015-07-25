@@ -627,11 +627,11 @@ public class HistoryFrame extends JFrame {
 
         // buttonAddSolutions
         this.buttonAddSolutions = new JButton(_("history.add_solutions"));
-        add(this.buttonAddSolutions, "growx, top, split 5, flowy");
+        add(this.buttonAddSolutions, "growx, top, split 6, flowy");
         
         // buttonExportSolutions
         this.buttonExportSolutions = new JButton(_("history.export_solutions"));
-        add(this.buttonExportSolutions, "growx, top, split 5, flowy");
+        add(this.buttonExportSolutions, "growx, top");
 
         // buttonEdit
         this.buttonEdit = new JButton(_("history.edit"));
