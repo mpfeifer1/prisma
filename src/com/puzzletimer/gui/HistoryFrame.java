@@ -363,11 +363,7 @@ public class HistoryFrame extends JFrame {
         this.buttonExportSolutions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	try {
-					solutionManager.exportSolutions();
-				} catch (FileNotFoundException | UnsupportedEncodingException e1) {
-					e1.printStackTrace();
-				}
+            	solutionManager.exportSolutions();
             	Component frame = null;
 				JOptionPane.showMessageDialog(frame,
             		    "Solutions Exported Successfully.");

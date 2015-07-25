@@ -100,15 +100,19 @@ public class SolutionManager {
         notifyListeners();
     }
     
-    public void exportSolutions() throws FileNotFoundException, UnsupportedEncodingException {
-    	PrintWriter out = new PrintWriter("puzzle_solutions.csv", "UTF-8");
-    	out.println("Time,Start,Scramble");
-    	for(Solution s : solutions.values()) {
-    		out.println(((double)s.getTiming().getElapsedTime())/1000 + "," + 
-    							 s.getTiming().getStart().toString() + "," +
-    							 s.getScramble().getRawSequence());
-    	}
-    	out.close();
+    public void exportSolutions() {
+    	try {
+    		PrintWriter out = new PrintWriter("puzzle_solutions.csv", "UTF-8");
+    		out.println("Time,Start,Scramble");
+    		for(Solution s : solutions.values()) {
+    			out.println(((double)s.getTiming().getElapsedTime())/1000 + "," + 
+    					s.getTiming().getStart().toString() + "," +
+    					s.getScramble().getRawSequence());
+    		}
+    		out.close();
+    	} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
     }
 
     public void notifyListeners() {
