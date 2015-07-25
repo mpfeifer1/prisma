@@ -1,6 +1,10 @@
 package com.puzzletimer.state;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -94,6 +98,12 @@ public class SolutionManager {
         }
 
         notifyListeners();
+    }
+    
+    public void exportSolutions() throws FileNotFoundException, UnsupportedEncodingException {
+    	PrintWriter out = new PrintWriter("puzzle_solutions.csv", "UTF-8");
+    	out.println(Arrays.toString(solutions.entrySet().toArray()));
+    	out.close();
     }
 
     public void notifyListeners() {

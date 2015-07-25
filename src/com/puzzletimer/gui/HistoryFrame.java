@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +33,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
+import com.puzzletimer.Main;
 import com.puzzletimer.models.table.CustomTableModel;
 import com.puzzletimer.models.table.SortButtonRenderer;
 import net.miginfocom.swing.MigLayout;
@@ -359,14 +362,12 @@ public class HistoryFrame extends JFrame {
         this.buttonExportSolutions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SolutionExporterDialog.SolutionExporterListener listener =
-                    new SolutionExporterDialog.SolutionExporterListener() {
-                        @Override
-                        public void solutionsImported(Solution[] solutions) {
-                            solutionManager.addSolutions(solutions);
-                        }
-                    };
-
+            	try {
+					solutionManager.exportSolutions();
+				} catch (FileNotFoundException | UnsupportedEncodingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
         });
 
