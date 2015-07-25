@@ -102,7 +102,11 @@ public class SolutionManager {
     
     public void exportSolutions() throws FileNotFoundException, UnsupportedEncodingException {
     	PrintWriter out = new PrintWriter("puzzle_solutions.csv", "UTF-8");
-    	out.println(Arrays.toString(solutions.entrySet().toArray()));
+    	for(Solution s : solutions.values()) {
+    		out.println(((double)s.getTiming().getElapsedTime())/1000 + "," + 
+    							 s.getTiming().getStart().toString() + "," +
+    							 s.getScramble().getRawSequence());
+    	}
     	out.close();
     }
 
