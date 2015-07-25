@@ -2,6 +2,7 @@ package com.puzzletimer.gui;
 
 import static com.puzzletimer.Internationalization._;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -365,9 +366,11 @@ public class HistoryFrame extends JFrame {
             	try {
 					solutionManager.exportSolutions();
 				} catch (FileNotFoundException | UnsupportedEncodingException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+            	Component frame = null;
+				JOptionPane.showMessageDialog(frame,
+            		    "Solutions Exported Successfully.");
             }
         });
 
