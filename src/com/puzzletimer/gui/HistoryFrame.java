@@ -243,7 +243,7 @@ public class HistoryFrame extends JFrame {
         
         this.nullTime = "XX:XX.XX";
 
-        setMinimumSize(new Dimension(800, 600));
+        setMinimumSize(new Dimension(900, 600));
 
         createComponents();
         pack();

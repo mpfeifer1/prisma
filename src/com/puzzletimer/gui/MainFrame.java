@@ -746,6 +746,7 @@ public class MainFrame extends JFrame {
     private ScramblerProvider scramblerProvider;
     private TipProvider tipProvider;
     private CategoryManager categoryManager;
+    private GoogleDriveManager googleDriveManager;
     private ScrambleManager scrambleManager;
     private SolutionManager solutionManager;
     private SessionManager sessionManager;
@@ -764,6 +765,10 @@ public class MainFrame extends JFrame {
     private JCheckBoxMenuItem menuItemAnyKey;
     private JCheckBoxMenuItem menuItemHideTimer;
     private JCheckBoxMenuItem menuItemSmoothTiming;
+	private JMenu menuGoogleDrive;
+	private JMenuItem menuItemSignIn;
+	private JMenuItem menuItemSignOut;
+	private JMenuItem menuItemSync;
     private JMenu stackmatTimerInputDevice;
     private ButtonGroup stackmatTimerInputDeviceGroup;
     private JRadioButtonMenuItem menuItemManualInput;
@@ -791,6 +796,7 @@ public class MainFrame extends JFrame {
     private SessionSummaryFrame sessionSummaryFrame;
     private StackmatDeveloperFrame stackmatDeveloperFrame;
     private CategoryManagerFrame categoryManagerDialog;
+    private GoogleDriveFrame googleDriveFrame;
     private ColorSchemeFrame colorSchemeFrame;
 
     private AudioFormat audioFormat;
@@ -812,6 +818,7 @@ public class MainFrame extends JFrame {
             ScramblerProvider scramblerProvider,
             TipProvider tipProvider,
             CategoryManager categoryManager,
+            GoogleDriveManager googleDriveManager,
             ScrambleManager scrambleManager,
             SolutionManager solutionManager,
             SessionManager sessionManager) {
@@ -823,6 +830,7 @@ public class MainFrame extends JFrame {
         this.configurationManager = configurationManager;
         this.timerManager = timerManager;
         this.categoryManager = categoryManager;
+        this.googleDriveManager = googleDriveManager;
         this.scrambleManager = scrambleManager;
         this.solutionManager = solutionManager;
         this.sessionManager = sessionManager;
@@ -1490,6 +1498,10 @@ public class MainFrame extends JFrame {
         this.menuCategory = new JMenu(_("main.category"));
         this.menuCategory.setMnemonic(KeyEvent.VK_C);
         menuBar.add(this.menuCategory);
+        
+        //menuDrive
+        this.menuGoogleDrive = new JMenu(_("main.google_drive"));
+        menuGoogleDrive.add(this.menuGoogleDrive);
 
         // menuOptions
         JMenu menuOptions = new JMenu(_("main.options"));
@@ -1716,6 +1728,11 @@ public class MainFrame extends JFrame {
             this.tipProvider);
         this.categoryManagerDialog.setLocationRelativeTo(null);
         this.categoryManagerDialog.setIconImage(icon);
+        
+        // google drive frame
+        this.googleDriveFrame = new GoogleDriveFrame();
+        this.googleDriveFrame.setLocationRelativeTo(null);
+        this.googleDriveFrame.setIconImage(icon);
 
         // color scheme frame
         this.colorSchemeFrame = new ColorSchemeFrame(

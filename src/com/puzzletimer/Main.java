@@ -36,6 +36,7 @@ import com.puzzletimer.scramblers.ScramblerProvider;
 import com.puzzletimer.state.CategoryManager;
 import com.puzzletimer.state.ColorManager;
 import com.puzzletimer.state.ConfigurationManager;
+import com.puzzletimer.state.GoogleDriveManager;
 import com.puzzletimer.state.MessageManager;
 import com.puzzletimer.state.ScrambleManager;
 import com.puzzletimer.state.SessionManager;
@@ -65,6 +66,7 @@ public class Main {
     private ScramblerProvider scramblerProvider;
     private TipProvider tipProvider;
     private CategoryManager categoryManager;
+    private GoogleDriveManager googleDriveManager;
     private ScrambleManager scrambleManager;
     private SolutionManager solutionManager;
     private SessionManager sessionManager;
@@ -478,6 +480,7 @@ public class Main {
                     main.scramblerProvider,
                     main.tipProvider,
                     main.categoryManager,
+                    main.googleDriveManager,
                     main.scrambleManager,
                     main.solutionManager,
                     main.sessionManager);
